@@ -2,18 +2,18 @@ package com.codegym.repository;
 
 
 public interface GeneralRepository<T> {
-    int SIZE = 20;
+    int SIZE = 3;
 
     T[] showList();
 
     int size();
 
-    void add(int index, T element);
+    boolean addProduct(int index, T element);
 
-    void remove(int index);
+    void removeProduct(int index);
 
-    T set(int index, T element);
+    T setProduct(int index, T element);
 
-    int find(String elementName);
-    T[] sort();
+    int findByName(String elementName);
+    T[] sortByPrice();
 }

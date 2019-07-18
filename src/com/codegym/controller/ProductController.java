@@ -14,23 +14,23 @@ public class ProductController {
         return productService.size();
     }
 
-    public void add(int index, Product Product) {
-        productService.add(index, Product);
+    public boolean addProduct(int index, Product Product) {
+       return   productService.addProduct(index, Product);
     }
 
-    public void remove(int index) {
-        productService.remove(index);
+    public void removeProduct(int index) {
+        productService.removeProduct(index);
     }
 
-    public Product set(int index, Product Product) {
-        return productService.set(index, Product);
+    public Product setProduct(int index, Product Product) {
+        return productService.setProduct(index, Product);
     }
 
-    public int find(String ProductName) {
-        return productService.find(ProductName);
+    public int findByName(String ProductName) {
+        return productService.findByName(ProductName);
     }
-    public Product[] sort() {
-        return productService.sort();
+    public Product[] sortByPrice() {
+        return productService.sortByPrice();
     }
 
 }

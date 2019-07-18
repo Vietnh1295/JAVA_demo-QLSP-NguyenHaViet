@@ -28,7 +28,7 @@ public class Main {
                     if (addProduct(index)) {
                         System.out.println("Them thanh cong");
                     } else {
-                        System.out.println("Vi tri muon them nam ngoai danh sach");
+                        System.out.println("Vi tri muon them nam ngoai danh sach hoac trung san pham");
                     }
 
                     break;
@@ -73,42 +73,42 @@ public class Main {
     }
 
     private static Product[] sortProduct() {
-        return productController.sort();
+        return productController.sortByPrice();
     }
 
     private static String seachNameProduct(String productName) {
         int index;
         Product[] listProduct = productController.showList();
-        index = productController.find(productName);
+        index = productController.findByName(productName);
         if (index == -1) {
             return "Khong tim thay san pham";
         } else {
             System.out.println();
             System.out.println();
-            return "San pham can tim la: " + listProduct[index].toString();
+            return "San pham can tim la: " + toString(listProduct[index]);
         }
     }
 
     private static boolean updateProduct(int index) {
         int size = productController.size();
-        if (index < 0 || index >= size) {
-            return false;
-        } else {
+        if (index > 0 && index < size) {
+
             Product product = new Product();
             setProductInfo(product);
-            productController.set(index, product);
+            productController.setProduct(index, product);
             return true;
+        } else {
+            return false;
+
         }
     }
 
     private static boolean removeProduct(int index) {
         int size = productController.size();
-
-        if (index < 0 && index >= size) {
-
+        if (index < 0 || index >= size) {
             return false;
         } else {
-            productController.remove(index);
+            productController.removeProduct(index);
             return true;
         }
     }
@@ -120,8 +120,7 @@ public class Main {
         }
         Product product = new Product();
         setProductInfo(product);
-        productController.add(index, product);
-        return true;
+        return productController.addProduct(index, product);
     }
 
     private static void showListProduct() {
@@ -129,7 +128,7 @@ public class Main {
         Product[] listProduct = productController.showList();
         for (Product product : listProduct) {
             if (product != null) {
-                System.out.println(product.toString() + " o vi tri so " + i);
+                System.out.println(toString(product) + " o vi tri so " + i);
             }
             i++;
         }
@@ -163,5 +162,13 @@ public class Main {
         System.out.println("5. Sua thong tin san pham");
         System.out.println("6. Tim kiem san pham");
         System.out.println("0. Thoat");
+    }
+    public static String toString(Product product) {
+        return "Product{" +
+                "id='" + product.getId()+ '\'' +
+                ", name='" +product.getName() + '\'' +
+                ", price=" + product.getPrice() +
+                ", description='" + product.getDescription() + '\'' +
+                '}';
     }
 }
